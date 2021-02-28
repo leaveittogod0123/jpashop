@@ -13,7 +13,7 @@ import java.util.List;
 public class Member {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue // 기본적으로 persist할때 insert문 안나감, JPA에는 DB 트랜잭션 커밋될때 flush되면서 DB에 insert쿼리가 날라감
     @Column(name = "member_id") // DB 컬럼
     private Long id;
 

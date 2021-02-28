@@ -21,7 +21,7 @@ public class MemberRepository {
         return member.getId();
     }
 
-    public Member find(Long id){
+    public Member findOne(Long id){
         /**
          * 단건 조회
          * (객체타입, PK)
