@@ -1,7 +1,7 @@
 package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Member;
-import org.junit.Assert;
+import jpabook.jpashop.service.MemberService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import static org.junit.Assert.fail;
 public class MemberServiceTest {
 
     @Autowired // SpringBootTest 없으면 Autowired도 안됩니다.
-    private  MemberService memberService;
+    private MemberService memberService;
 
     @Autowired
     private  MemberRepository memberRepository;
