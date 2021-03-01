@@ -1,6 +1,8 @@
 package jpabook.jpashop.domain;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.tomcat.jni.Local;
 
@@ -12,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // 객체 생성시 생성자 메서드를 사용하게끔 제약하는 방법으로 코딩하는게 유지보수에 편함
 public class Order {
 
     @Id @GeneratedValue
@@ -27,7 +30,7 @@ public class Order {
     @JoinColumn(name ="member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) // <- CascadeType.ALL order를 persist하면 orderItem 컬렉션도 다 persist
     private List<OrderItem> orderItems = new ArrayList<>();
 
     /**
@@ -36,7 +39,7 @@ public class Order {
      * Delivery -> Order로 참조하는 일은 거의 없으니
      * Order가 연관관계 주인 역할을 하게 됌
      */
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL) // <- CascadeType.ALL order를 persist하면 orderItem 컬렉션도 다 persist
     @JoinColumn(name = "delivery_id")
     private Delivery delivery;
 
